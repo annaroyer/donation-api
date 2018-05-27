@@ -5,16 +5,17 @@ const server = require('../app.js')
 
 chai.use(chaiHttp);
 
+const organizations = require('../data/organizations')
+
 describe('API Routes', () => {
   describe('GET /api/v1/organizations', () => {
-    it('returns all organizations', (done) => {
-      chai.request(server)
+    it('returns all organizations', () => {
+      return chai.request(server)
       .get('/api/v1/organizations')
-      .end((error, response) => {
-        if (error) done(error)
-
+      .then(response => {
         response.should.have.status(200)
-        done()
+        response.should.be.json
+        response.should.deep.equal(organizations)
       })
     })
   })
