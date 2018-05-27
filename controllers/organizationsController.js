@@ -1,7 +1,11 @@
+const db = require('../models/index')
 
 class OrganizationsController {
   static index(request, response, next){
-    response.json([{}])
+    db.Organization.findAll()
+    .then(organizations => {
+      response.json(organizations)
+    })
   }
 }
 
