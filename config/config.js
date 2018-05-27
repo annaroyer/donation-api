@@ -1,23 +1,19 @@
-{
+module.exports = {
   "development": {
-    "username": "postgres",
+    "username": "annaroyer",
     "password": null,
     "database": "donation_api_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "postgres",
+    "username": "annaroyer",
     "password": null,
     "database": "donation_api_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": null,
-    "database": "donation_api_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "url": process.env.DATABASE_URL
   }
 }
