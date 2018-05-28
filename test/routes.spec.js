@@ -6,12 +6,13 @@ const server = require('../app.js')
 chai.use(chaiHttp);
 
 const models = require('../models')
-const organizations = require('../data/organizations')
 
 describe('API Routes', () => {
   beforeEach(() => {
     return models.sequelize.sync({ force: true })
-    .then(() => models.Organization.bulkCreate(organizations))
+    .then(() => {
+      models.Organization.bulkCreate(require('../data/organizations'))
+    })
     .then(data => Promise.resolve(data))
   })
 
@@ -22,7 +23,7 @@ describe('API Routes', () => {
       .then(response => {
         response.should.have.status(200)
         response.should.be.json
-        response.body.should.deep.equal(organizations)
+        response.body.should.deep.equal(require('./fixtures/organizations'))
       })
     })
   })
@@ -34,7 +35,7 @@ describe('API Routes', () => {
       .then(response => {
         response.should.have.status(200)
         response.should.be.json
-        response.body.should.deep.equal(require('../data/test_fixtures/pickups'))
+        response.body.should.deep.equal(require('./fixtures/pickups'))
       })
     })
   })
