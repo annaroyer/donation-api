@@ -11,19 +11,24 @@ module.exports = {
       name: {
         allowNull: false,
         unique: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: { notEmpty: true }
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: { notEmpty: true }
       },
       website: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: { isUrl: true }
       },
       logo: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: { notEmpty: true }
       },
       image: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: { notEmpty: true }
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +41,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Organizations');
+    return queryInterface.dropTable('organizations');
   }
 };
