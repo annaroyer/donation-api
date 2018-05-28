@@ -39,5 +39,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.organization = require('./organization')(sequelize, Sequelize)
+db.pickup = require('./pickup')(sequelize, Sequelize)
 
 module.exports = db;
