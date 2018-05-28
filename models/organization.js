@@ -7,8 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     logo: DataTypes.TEXT,
     image: DataTypes.TEXT
   }, {});
-  Organization.associate = function(models) {
-    // associations can be defined here
+  Organization.associate = (models) => {
+    Organization.hasMany(models.Pickup)
+    Organization.belongsToMany(models.ItemCategory, { through: 'OrganizationItemCategory' })
   };
   return Organization;
 };
