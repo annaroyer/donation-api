@@ -1,4 +1,4 @@
-const organizations = [
+module.exports = [
 {id: 1,
 name: "Helping Hand Mission",
 description: "Provide relief and support to needy families and victims of fire.",
@@ -26,5 +26,3 @@ logo: "https://www.seeklogo.net/wp-content/uploads/2012/10/habitat-for-humanity-
 createdAt: (new Date()).toJSON(),
 updatedAt: (new Date()).toJSON()}
 ]
-
-module.exports = organizations
