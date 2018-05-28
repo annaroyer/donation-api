@@ -16,13 +16,25 @@ describe('API Routes', () => {
   })
 
   describe('GET /api/v1/organizations', () => {
-    it('returns all organizations', function() {
+    it('returns all organizations', () => {
       return chai.request(server)
       .get('/api/v1/organizations')
       .then(response => {
         response.should.have.status(200)
         response.should.be.json
         response.body.should.deep.equal(organizations)
+      })
+    })
+  })
+
+  describe('GET /api/v1/pickups', () => {
+    it('returns all pickups within the given zipcode', () => {
+      return chai.request(server)
+      .get('/api/v1/pickups?zipcode=80303')
+      .then(response => {
+        response.should.have.status(200)
+        response.should.be.json
+        response.body.should.deep.equal(require('../data/test_fixtures/pickups'))
       })
     })
   })
