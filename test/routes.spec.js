@@ -5,15 +5,22 @@ const server = require('../app.js')
 
 chai.use(chaiHttp);
 
-const models = require('../models')
+const db = require('../models/index')
 
-describe('API Routes', () => {
-  beforeEach(() => {
-    return models.sequelize.sync({ force: true })
+describe('API Routes', function() {
+  this.timeout(0)
+  before(() => {
+    return db.sequelize.sync({ force: true })
     .then(() => {
-      models.Organization.bulkCreate(require('../data/organizations'))
+      db.organization.bulkCreate(require('../data/organizations'))
+      db.pickup.bulkCreate(require('../data/pickups'))
+      db.item_category.bulkCreate(require('../data/itemCategories'))
+      db.pickup_item_category.bulkCreate(require('../data/pickupItemCategories'))
+      db.organization_item_category.bulkCreate(require('../data/organizationItemCategories'))
+      db.pickup_zipcode.bulkCreate(require('../data/pickupZipcodes'))
     })
     .then(data => Promise.resolve(data))
+    .catch(error => console.error(error))
   })
 
   describe('GET /api/v1/organizations', () => {
