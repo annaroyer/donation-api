@@ -1,17 +1,22 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('item_categories', {
+    return queryInterface.createTable('subscriptions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      donorId: {
         allowNull: false,
-        notEmpty: true,
-        type: Sequelize.STRING
+        foreignKey: true,
+        type: Sequelize.INTEGER
+      },
+      organizationId: {
+        allowNull: false,
+        foreignKey: true,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -26,6 +31,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('item_categories');
+    return queryInterface.dropTable('subscriptions');
   }
 };

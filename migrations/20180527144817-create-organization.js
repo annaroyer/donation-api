@@ -10,32 +10,30 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        unique: true,
-        type: Sequelize.STRING,
-        validate: { notEmpty: true }
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       description: {
-        type: Sequelize.TEXT,
-        validate: { notEmpty: true }
+        type: Sequelize.TEXT
       },
       website: {
-        type: Sequelize.TEXT,
-        validate: { isUrl: true }
+        isUrl: true,
+        type: Sequelize.TEXT
       },
       logo: {
-        type: Sequelize.TEXT,
-        validate: { notEmpty: true }
+        type: Sequelize.TEXT
       },
       image: {
-        type: Sequelize.TEXT,
-        validate: { notEmpty: true }
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
+        defaultValue: Date.now(),
         type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
+        defaultValue: Date.now(),
         type: Sequelize.DATE
       }
     });

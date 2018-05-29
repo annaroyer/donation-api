@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('PickupZipcodes', {
+    return queryInterface.createTable('pickup_zipcodes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,20 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       zipcode: {
+        allowNull: false,
+        notEmpty: true,
         type: Sequelize.STRING,
-        validate: { notEmpty: true }
       },
-      createdAt: {
+      pickup_id: {
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        foreignKey: true,
+        type: Sequelize.INTEGER
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('PickupZipcodes');
+    return queryInterface.dropTable('pickup_zipcodes');
   }
 };

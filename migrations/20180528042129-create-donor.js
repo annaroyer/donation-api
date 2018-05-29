@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Donors', {
+    return queryInterface.createTable('donors', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,47 +9,58 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       email: {
-        type: Sequelize.STRING,
-        validate: { isEmail: true, notEmpty: true }
+        allowNull: false,
+        isEmail: true,
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       phone: {
+        allowNull: false,
         type: Sequelize.BIGINT
       },
       streetAddress: {
-        type: Sequelize.TEXT,
-        validate: { notEmpty: true }
+        allowNull: false,
+        notEmpty: true,
+        type: Sequelize.TEXT
       },
       first_name: {
-        type: Sequelize.STRING,
-        validate: { notEmpty: true }
+        allowNull: false,
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       last_name: {
-        type: Sequelize.STRING,
-        validate: { notEmpty: true }
+        allowNull: false,
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       zipcode: {
-        type: Sequelize.STRING,
-        validate: { notEmpty: true }
+        allowNull: false,
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       city: {
-        type: Sequelize.STRING,
-        validate: { notEmpty: true }
+        allowNull: false,
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       state: {
-        type: Sequelize.STRING,
-        validate: { notEmpty: true }
+        allowNull: false,
+        notEmpty: true,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
+        defaultValue: Date.now(),
         type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
+        defaultValue: Date.now(),
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Donors');
+    return queryInterface.dropTable('donors');
   }
 };
