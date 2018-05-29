@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Donor = sequelize.define('Donor', {
+  const Donor = sequelize.define('donor', {
     email: DataTypes.STRING,
     phone: DataTypes.BIGINT,
     streetAddress: DataTypes.TEXT,
@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     state: DataTypes.STRING
   }, {});
   Donor.associate = (models) => {
-    Donor.belongsToMany(models.Pickup, { through: 'DonorPickup' })
-    Donor.belongsToMany(models.Organization, { through: 'Subscription' })
+    Donor.belongsToMany(models.pickup, { through: 'donor_pickup' })
+    Donor.belongsToMany(models.organization, { through: 'subscription' })
   };
   return Donor;
 };
