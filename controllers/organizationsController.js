@@ -1,13 +1,11 @@
-const db = require('../models/index')
+const Organization = require('../models').organization
 
 class OrganizationsController {
   static index(request, response, next){
-    db.Organization.findAll({
+    Organization.findAll({
       attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
     })
-    .then(organizations => {
-      response.json(organizations)
-    })
+    .then(organizations => response.json(organizations))
   }
 }
 
