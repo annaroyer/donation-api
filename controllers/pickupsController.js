@@ -1,6 +1,5 @@
 const db = require('../models/index')
 const Pickup = db.pickup
-const pry = require('pryjs')
 
 class PickupsController {
   static index(request, response, next){
@@ -21,9 +20,7 @@ class PickupsController {
         }
       ]
     })
-    .then(pickups => {
-      response.json(pickups)
-    })
+    .then(pickups => response.json(pickups))
   }
 }
 
