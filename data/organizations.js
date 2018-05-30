@@ -9,7 +9,7 @@ module.exports = [
     description: "The Purple Heart is awarded to members of the armed forces of the U.S. who are wounded by an instrument of war in the hands of the enemy",
     website: "http://www.purpleheart.org/",
     image: "http://www.purpleheartpickup.org/-/media/images/charities/purpleheart/ph-01-1280x500.ashx?as=1&h=500&la=en&w=1280&hash=B24EBBC88656E7E6733A5CE1F591C58F6868C6AB",
-    logo: "https://donatestuff.com/wp-content/uploads/2012/05/purple-heart1.png"
+    logo: "http://www.alliance4thebrave.com/wp-content/uploads/2015/01/Military-Order-of-Purple-Heart-logo.png"
   },
   { name: "habitat for humanity",
     description: "A nonprofit organization that helps families build and improve places to call home. We believe affordable housing plays a critical role in strong and stable communities.",
