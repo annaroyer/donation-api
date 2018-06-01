@@ -7,7 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     website: {
       type: DataTypes.TEXT,
-      isUrl: true
+      validate: {
+        isUrl: {
+          args: true,
+          msg: "Website must be a url"
+        }
+      }
     },
     logo: {
       type: DataTypes.TEXT,
@@ -35,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
   Organization.associate = (models) => {
     Organization.hasMany(models.pickup)
     Organization.hasMany(models.subscription)
-    Organization.hasOne(models.contact_person)
+    Organization.hasOne(models.contact_person, { as: 'contactPerson' })
   };
   return Organization;
 };
