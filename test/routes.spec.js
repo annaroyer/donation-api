@@ -43,4 +43,39 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('POST /api/v1/organizations', () => {
+    it('creates a new organization and contact_person in the database and returns a message', () => {
+      return chai.request(server)
+      .post('/api/v1/organizations')
+      .send({ name: "Goodwill",
+              description: "Goodwills meet the needs of all job seekers.",
+              website: "http://www.goodwill.org/",
+              contactPerson:{ first_name: "Roberta",
+                              last_name: "Goodenough",
+                              email: "roberta@goodwill.com",
+                              phone: 5434324231
+                            }
+      })
+      .then(response => response.should.have.status(200))
+    })
+
+    it('returns a 400 status code and error object if unsuccessful', () => {
+      return chai.request(server)
+      .post('/api/v1/organizations')
+      .send({ name: "Goodwill",
+              description: "Goodwills meet the needs of all job seekers.",
+              website: "goodwill",
+              contactPerson:{ first_name: "Roberta",
+                              last_name: "Goodenough",
+                              email: "robertag",
+                              phone: 5434324231
+                            }
+      })
+      .then(response => {
+        response.should.have.status(400)
+        response.body.should.deep.equal('Validation error: Website must be a url')
+      })
+    })
+  })
 })
