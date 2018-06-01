@@ -8,22 +8,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      donorId: {
+      donor_id: {
         allowNull: false,
         foreignKey: true,
         type: Sequelize.INTEGER
       },
-      organizationId: {
+      organization_id: {
         allowNull: false,
         foreignKey: true,
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         defaultValue: Date.now(),
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         defaultValue: Date.now(),
         type: Sequelize.DATE

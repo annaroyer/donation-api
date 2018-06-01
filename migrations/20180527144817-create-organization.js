@@ -26,12 +26,20 @@ module.exports = {
       image: {
         type: Sequelize.TEXT
       },
-      createdAt: {
+      accepted_items: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      status: {
+        type: Sequelize.STRING,
+        isIn: [['pending', 'accepted','rejected', 'active']],
+        defaultValue: 'pending'
+      },
+      created_at: {
         allowNull: false,
         defaultValue: Date.now(),
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         defaultValue: Date.now(),
         type: Sequelize.DATE
