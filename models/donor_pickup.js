@@ -1,12 +1,27 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const DonorPickup = sequelize.define('donor_pickup', {
-    pickupId: DataTypes.INTEGER,
-    donorId: DataTypes.INTEGER
-  }, {});
+    pickup_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: sequelize.pickup,
+        key: 'id'
+      }
+    },
+    street_address: DataTypes.TEXT,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    zipcode: DataTypes.STRING,
+    phone: DataTypes.BIGINT,
+    email: {
+      type: DataTypes.STRING,
+      isEmail: true
+    }
+  }, {
+    underscored: true
+  });
   DonorPickup.associate = (models) => {
     DonorPickup.belongsTo(models.pickup)
-    DonorPickup.belongsTo(models.donor)
   };
   return DonorPickup;
 };

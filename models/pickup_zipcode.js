@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
-    underscored: true,
-    timestamps: false
+    underscored: true
   });
   PickupZipcode.associate = (models) => {
     PickupZipcode.belongsTo(models.pickup)

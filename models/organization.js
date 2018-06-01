@@ -1,29 +1,41 @@
 'use strict';
+const validations = require('../services/validations')
+
 module.exports = (sequelize, DataTypes) => {
   const Organization = sequelize.define('organization', {
-    name: DataTypes.STRING,
+    name:  DataTypes.STRING,
     description: DataTypes.TEXT,
-    website: DataTypes.TEXT,
-    logo: DataTypes.TEXT,
-    image: DataTypes.TEXT,
+    website: {
+      type: DataTypes.TEXT,
+      isUrl: true
+    },
+    logo: {
+      type: DataTypes.TEXT,
+      isUrl: true
+    },
+    image: {
+      type: DataTypes.TEXT,
+      isUrl: true
+    },
     accepted_items: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
-      isIn: [['clothing and accessories', 'household items', 'furniture', 'non-perishable foods']]
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      validate: validations.allValidCategories
     },
     status: {
-      type: DataTypes.ENUM,
-      values: ['pending', 'accepted','rejected', 'active']
+      type: DataTypes.STRING,
+      isIn: [['pending', 'accepted', 'rejected', 'active']],
+      defaultValue: 'pending'
     }
-  }, {underscored: true});
+  }, {
+    defaultScope: {
+      where: { status: 'active' }
+    },
+    underscored: true
+  });
   Organization.associate = (models) => {
     Organization.hasMany(models.pickup)
-    Organization.belongsToMany(models.item_category,
-      { as: 'acceptedItems',
-        through: 'organization_item_category',
-        foreignKey: 'organization_id',
-        otherKey: 'item_category_id'
-      }
-    )
+    Organization.hasMany(models.subscription)
+    Organization.hasOne(models.contact_person)
   };
   return Organization;
 };
