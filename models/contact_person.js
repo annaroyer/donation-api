@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
-      isEmail: true
+      validate: {
+        isEmail: true
+      }
     },
     phone: DataTypes.BIGINT
   }, {
