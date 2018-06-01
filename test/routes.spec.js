@@ -14,9 +14,6 @@ describe('API Routes', function() {
     .then(() => {
       db.organization.bulkCreate(require('../data/organizations'))
       db.pickup.bulkCreate(require('../data/pickups'))
-      db.item_category.bulkCreate(require('../data/itemCategories'))
-      db.pickup_item_category.bulkCreate(require('../data/pickupItemCategories'))
-      db.organization_item_category.bulkCreate(require('../data/organizationItemCategories'))
       db.pickup_zipcode.bulkCreate(require('../data/pickupZipcodes'))
     })
     .then(data => Promise.resolve(data))
