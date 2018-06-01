@@ -3,8 +3,12 @@ const validations = require('../services/validations')
 
 module.exports = (sequelize, DataTypes) => {
   const Organization = sequelize.define('organization', {
-    name:  DataTypes.STRING,
-    description: DataTypes.TEXT,
+    name:  {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.TEXT,
+    },
     website: {
       type: DataTypes.TEXT,
       validate: {
