@@ -58,6 +58,14 @@ describe('API Routes', function() {
                             }
       })
       .then(response => response.should.have.status(200))
+      .then(() => {
+        return db.organization.unscoped().count()
+        .then(count => count.should.eq(4))
+      })
+      .then(() => {
+        return db.contact_person.count()
+        .then(count => count.should.eq(1))
+      })
     })
 
     it('returns a 400 status code and error object if unsuccessful', () => {
