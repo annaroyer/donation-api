@@ -5,9 +5,15 @@ module.exports = (sequelize, DataTypes) => {
   const Organization = sequelize.define('organization', {
     name:  {
       type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
     },
     description: {
       type: DataTypes.TEXT,
+      validate: {
+        notEmpty: true
+      }
     },
     website: {
       type: DataTypes.TEXT,
@@ -20,7 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     logo: {
       type: DataTypes.TEXT,
-      isUrl: true
+      validate: {
+        isUrl: true
+      }
     },
     image: {
       type: DataTypes.TEXT,
