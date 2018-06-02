@@ -47,7 +47,8 @@ module.exports = (sequelize, DataTypes) => {
     defaultScope: {
       where: { status: 'active' }
     },
-    underscored: true
+    underscored: true,
+    timestamps: true
   });
   Organization.associate = (models) => {
     Organization.hasMany(models.pickup)

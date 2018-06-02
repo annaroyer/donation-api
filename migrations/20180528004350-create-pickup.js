@@ -20,7 +20,10 @@ module.exports = {
           model: 'organizations',
           key: 'id'
         }
-      }
+      },
+      accepted_items: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
