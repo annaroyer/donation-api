@@ -1,5 +1,5 @@
 const Organization = require('../models').organization
-const pry = require('pryjs')
+
 class OrganizationsController {
   static index(request, response, next){
     Organization.findAll({
@@ -9,7 +9,6 @@ class OrganizationsController {
   }
 
   static create(request, response, next) {
-
     Organization.create( request.body,
       { include: [ 'contactPerson' ] },
       { validate: true }
