@@ -14,6 +14,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       website: {
@@ -33,16 +34,6 @@ module.exports = {
         type: Sequelize.STRING,
         isIn: [['pending', 'accepted','rejected', 'active']],
         defaultValue: 'pending'
-      },
-      created_at: {
-        allowNull: false,
-        defaultValue: Date.now(),
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        allowNull: false,
-        defaultValue: Date.now(),
-        type: Sequelize.DATE
       }
     });
   },

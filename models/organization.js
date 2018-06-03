@@ -3,15 +3,32 @@ const validations = require('../services/validations')
 
 module.exports = (sequelize, DataTypes) => {
   const Organization = sequelize.define('organization', {
-    name:  DataTypes.STRING,
-    description: DataTypes.TEXT,
+    name:  {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    description: {
+      type: DataTypes.TEXT,
+      validate: {
+        notEmpty: true
+      }
+    },
     website: {
       type: DataTypes.TEXT,
-      isUrl: true
+      validate: {
+        isUrl: {
+          args: true,
+          msg: "Website must be a url"
+        }
+      }
     },
     logo: {
       type: DataTypes.TEXT,
-      isUrl: true
+      validate: {
+        isUrl: true
+      }
     },
     image: {
       type: DataTypes.TEXT,
@@ -30,7 +47,8 @@ module.exports = (sequelize, DataTypes) => {
     defaultScope: {
       where: { status: 'active' }
     },
-    underscored: true
+    underscored: true,
+    timestamps: false
   });
   Organization.associate = (models) => {
     Organization.hasMany(models.pickup)

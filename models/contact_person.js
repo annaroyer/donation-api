@@ -12,11 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
-      isEmail: true
+      validate: {
+        isEmail: {
+          args: true,
+          msg: "Email must be a valid email address"
+        }
+      }
     },
     phone: DataTypes.BIGINT
   }, {
-    underscored: true
+    underscored: true,
+    timestamps: false
   });
   ContactPerson.associate = (models) => {
     ContactPerson.belongsTo(models.organization)

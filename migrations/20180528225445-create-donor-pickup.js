@@ -17,16 +17,6 @@ module.exports = {
         allowNull: false,
         foreignKey: true,
         type: Sequelize.INTEGER
-      },
-      created_at: {
-        allowNull: false,
-        defaultValue: Date.now(),
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        allowNull: false,
-        defaultValue: Date.now(),
-        type: Sequelize.DATE
       }
     });
   },
