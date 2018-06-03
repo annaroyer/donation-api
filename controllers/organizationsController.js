@@ -1,5 +1,4 @@
 const Organization = require('../models').organization
-const pry = require('pryjs')
 
 class OrganizationsController {
   static index(request, response, next){

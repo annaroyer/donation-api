@@ -51,7 +51,7 @@ describe('API Routes', function() {
       .send({ name: "Goodwill",
               description: "Goodwills meet the needs of all job seekers.",
               website: "http://www.goodwill.org/",
-              contactPerson:{ first_name: "Roberta",
+              contact_person:{ first_name: "Roberta",
                               last_name: "Goodenough",
                               email: "roberta@goodwill.com",
                               phone: 5434324231
