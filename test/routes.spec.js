@@ -45,7 +45,7 @@ describe('API Routes', function() {
   })
 
   describe('POST /api/v1/organizations', () => {
-    it('creates a new organization and contact_person in the database and returns a message', () => {
+    it('creates a new organization and contact_person in the database', () => {
       return chai.request(server)
       .post('/api/v1/organizations')
       .send({ name: "Goodwill",
@@ -57,7 +57,7 @@ describe('API Routes', function() {
                               phone: 5434324231
                             }
       })
-      .then(response => response.should.have.status(200))
+      .then(response => response.should.have.status(204))
       .then(() => {
         return db.organization.unscoped().count()
         .then(count => count.should.eq(4))
