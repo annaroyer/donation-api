@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     phone: DataTypes.BIGINT
   }, {
-    underscored: true
+    underscored: true,
+    timestamps: false
   });
   ContactPerson.associate = (models) => {
     ContactPerson.belongsTo(models.organization)

@@ -48,12 +48,12 @@ module.exports = (sequelize, DataTypes) => {
       where: { status: 'active' }
     },
     underscored: true,
-    timestamps: true
+    timestamps: false
   });
   Organization.associate = (models) => {
     Organization.hasMany(models.pickup)
     Organization.hasMany(models.subscription)
-    Organization.hasOne(models.contact_person, { as: 'contactPerson' })
+    Organization.hasOne(models.contact_person)
   };
   return Organization;
 };
