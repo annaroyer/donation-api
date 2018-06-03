@@ -82,7 +82,8 @@ describe('API Routes', function() {
       })
       .then(response => {
         response.should.have.status(400)
-        response.body.should.deep.equal('Validation error: Website must be a url')
+        response.body.errors[0].message.should.equal('Website must be a url')
+        response.body.errors[0].path.should.equal('website')
       })
     })
   })
