@@ -3,12 +3,12 @@ module.exports = [
                     logo: "http://helpinghandmission.org/wp-content/uploads/2016/12/hhm-newlogo-200x90.png"
                  },
    date: "Friday, June 1, 2018",
-   acceptedItems: ["clothing and accessories", "furniture", "household items"]
+   accepted_items: ["clothing and accessories", "furniture", "household items"]
   },
   {organization: {  name: "Purple Heart",
                     logo: "https://donatestuff.com/wp-content/uploads/2012/05/purple-heart1.png"
                  },
    date: "Saturday, June 2, 2018",
-   acceptedItems: ["household items", "clothing and accessories", "furniture"]
+   accepted_items: ["household items", "clothing and accessories", "furniture"]
   }
 ]
