@@ -1,5 +1,5 @@
 const Organization = require('../models').organization
-const pry = require('pryjs')
+
 class OrganizationsController {
   static index(request, response, next){
     Organization.findAll({
@@ -19,7 +19,10 @@ class OrganizationsController {
         }
       ]
     })
-    .then(organization => response.json(organization))
+    .then(organization => {
+      if(organization) { response.json(organization) }
+      else { response.sendStatus(404) }
+    })
   }
 
   static create(request, response, next) {
