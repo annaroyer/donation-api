@@ -32,6 +32,18 @@ describe('API Routes', function() {
     })
   })
 
+  describe('GET /api/v1/organizations/:id', () => {
+    it('returns the organization with the given id', () => {
+      return chai.request(server)
+      .get('/api/v1/organizations/1')
+      .then(response => {
+        response.should.have.status(200)
+        response.should.be.json
+        response.body.should.deep.equal(require('./fixtures/organization'))
+      })
+    })
+  })
+
   describe('GET /api/v1/pickups', () => {
     it('returns all pickups within the given zipcode', () => {
       return chai.request(server)
