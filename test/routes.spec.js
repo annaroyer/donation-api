@@ -135,5 +135,24 @@ describe('API Routes', function() {
         })
       })
     })
+
+    it('returns returns 400 status code and object with errors if validation errors', () => {
+      return chai.request(server)
+      .post('/api/v1/pickups/1/donors')
+      .send({
+        street_address: "56789 KoalaBee Way",
+        city: "",
+        state: "UT",
+        phone: 1234567891,
+        zipcode: "65433",
+        email: "niceGal",
+      })
+      .then(response => {
+        response.should.have.status(400)
+        response.should.be.json
+        response.body.errors[0].message.should.eq('City cannot be blank')
+        response.body.errors[1].message.should.eq('Must be a valid email address')
+      })
+    })
   })
 })
