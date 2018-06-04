@@ -3,7 +3,7 @@ const Organization = require('../models').organization
 class OrganizationsController {
   static index(request, response, next){
     Organization.findAll({
-      attributes: ['id', 'name', 'description', 'website', 'image', 'logo', 'accepted_items']
+      attributes: { exclude: ['status'] }
     })
     .then(organizations => response.json(organizations))
   }
