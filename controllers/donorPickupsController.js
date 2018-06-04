@@ -6,6 +6,7 @@ class DonorPickupsController {
   static create(request, response, next){
     request.body.pickup_id = request.params.id
     DonorPickup.create(request.body,{ validate: true })
+    .catch(errors => response.status(400).json(errors))
     .then(donor => {
       DonorPickup.findOne({
         where: donor,
@@ -18,7 +19,6 @@ class DonorPickupsController {
       })
       .then(donor => response.json(donor))
     })
-    .catch(errors => response.sendStatus(400).json(errors))
   }
 }
 
