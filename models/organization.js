@@ -48,7 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       where: { status: 'active' }
     },
     underscored: true,
-    timestamps: false
+    timestamps: false,
+    indexes: [
+      { unique: true, fields: ['name'] }
+    ]
   });
   Organization.associate = (models) => {
     Organization.hasMany(models.pickup)

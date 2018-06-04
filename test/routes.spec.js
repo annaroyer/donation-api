@@ -32,6 +32,24 @@ describe('API Routes', function() {
     })
   })
 
+  describe('GET /api/v1/organizations/:id', () => {
+    it('returns the organization with the given id', () => {
+      return chai.request(server)
+      .get('/api/v1/organizations/1')
+      .then(response => {
+        response.should.have.status(200)
+        response.should.be.json
+        response.body.should.deep.equal(require('./fixtures/organization'))
+      })
+    })
+
+    it('returns a 404 if the organization with given id does not exist', () => {
+      return chai.request(server)
+      .get('/api/v1/organizations/5')
+      .then(response => response.should.have.status(404))
+    })
+  })
+
   describe('GET /api/v1/pickups', () => {
     it('returns all pickups within the given zipcode', () => {
       return chai.request(server)

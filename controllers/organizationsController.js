@@ -3,9 +3,26 @@ const Organization = require('../models').organization
 class OrganizationsController {
   static index(request, response, next){
     Organization.findAll({
-      attributes: ['name', 'description', 'website', 'image', 'logo']
+      attributes: { exclude: ['status'] }
     })
     .then(organizations => response.json(organizations))
+  }
+
+  static show(request, response, next){
+    Organization.findOne({
+      where: request.params,
+      attributes: { exclude: ['status'] },
+      include: [
+        { association: 'pickups',
+          attributes: ['date', 'accepted_items'],
+          include: { association: 'zipcodes', attributes: ['zipcode'] }
+        }
+      ]
+    })
+    .then(organization => {
+      if(organization) { response.json(organization) }
+      else { response.sendStatus(404) }
+    })
   }
 
   static create(request, response, next) {
