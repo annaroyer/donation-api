@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Pickup.associate = (models) => {
     Pickup.belongsTo(models.organization)
-    Pickup.hasMany(models.pickup_zipcode, {as: 'zipcode'})
+    Pickup.hasMany(models.pickup_zipcode, {as: 'zipcodes'})
     Pickup.hasMany(models.donor_pickup)
   };
   return Pickup;
