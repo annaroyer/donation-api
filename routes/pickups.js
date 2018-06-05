@@ -5,6 +5,7 @@ const PickupsController = require('../controllers/pickupsController')
 const DonorPickupsController = require('../controllers/donorPickupsController')
 
 router.get('/', PickupsController.index);
-router.post('/:id/donors', DonorPickupsController.create)
+router.post('/:pickup_id/donors', DonorPickupsController.create)
+router.get('/:pickup_id/donors/:id', DonorPickupsController.show)
 
 module.exports = router;
