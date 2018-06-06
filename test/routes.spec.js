@@ -105,4 +105,58 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('POST /api/v1/pickups/:id/donors', () => {
+    it('creates a new donor pickup and returns the pickup information', () => {
+      return chai.request(server)
+      .post('/api/v1/pickups/1/donors')
+      .send({
+        street_address: "56789 KoalaBee Way",
+        city: "Salt Lake City",
+        state: "UT",
+        zipcode: "65433",
+        phone: 3039876213,
+        email: "niceGal@example.com",
+      })
+      .then(response => {
+        response.should.have.status(200)
+        response.should.be.json
+        response.body.should.deep.equal({
+          street_address: "56789 KoalaBee Way",
+          city: "Salt Lake City",
+          state: "UT",
+          zipcode: "65433",
+          phone: "3039876213",
+          email: "niceGal@example.com",
+          pickup: {
+            date: "Friday, June 1, 2018",
+            organization: { name: "Helping Hand Mission" }
+          }
+        })
+      })
+      .then(() => {
+        return db.donor_pickup.count()
+        .then(count => count.should.eq(1))
+      })
+    })
+
+    it('returns returns 400 status code and object with errors if validation errors', () => {
+      return chai.request(server)
+      .post('/api/v1/pickups/1/donors')
+      .send({
+        street_address: "56789 KoalaBee Way",
+        city: "",
+        state: "UT",
+        phone: 1234567891,
+        zipcode: "65433",
+        email: "niceGal",
+      })
+      .then(response => {
+        response.should.have.status(400)
+        response.should.be.json
+        response.body.errors[0].message.should.eq('City cannot be blank')
+        response.body.errors[1].message.should.eq('Must be a valid email address')
+      })
+    })
+  })
 })

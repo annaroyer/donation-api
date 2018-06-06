@@ -8,14 +8,55 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    street_address: DataTypes.TEXT,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zipcode: DataTypes.STRING,
+    street_address: {
+      type: DataTypes.TEXT,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "Street Address cannot be blank"
+        }
+      }
+    },
+    city: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "City cannot be blank"
+        }
+      }
+    },
+    state: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "State cannot be blank"
+        }
+      }
+    },
+    zipcode: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "Zipcode cannot be blank"
+        }
+      }
+    },
     phone: DataTypes.BIGINT,
     email: {
       type: DataTypes.STRING,
-      isEmail: true
+      validate: {
+        isEmail: {
+          args: true,
+          msg: "Must be a valid email address"
+        },
+        notEmpty: {
+          args: true,
+          msg: "Email cannot be blank"
+        }
+      }
     }
   }, {
     underscored: true
