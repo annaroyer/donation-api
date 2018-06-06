@@ -134,6 +134,10 @@ describe('API Routes', function() {
           }
         })
       })
+      .then(() => {
+        return db.donor_pickup.count()
+        .then(count => count.should.eq(1))
+      })
     })
 
     it('returns returns 400 status code and object with errors if validation errors', () => {
