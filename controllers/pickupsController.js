@@ -17,12 +17,18 @@ class PickupsController {
   static create(request, response, next){
     request.body.organization_id = request.params.organization_id
     Pickup.create(request.body, { validate: true })
-    .then(pickup => response.sendStatus(200))
+    .then(pickup => response.redirect(`${request.originalUrl}/${pickup.id}`))
     .catch(errors => response.status(400).json(errors))
   }
 
   static show(request, response, next){
-
+    Pickup.findById(request.params.id, {
+      attributes: ['id', 'date', 'accepted_items'],
+      include: [
+        { association: 'zipcodes', attributes: ['zipcode'] }
+      ]
+    })
+    .then(pickup => response.json(pickup))
   }
 }
 
