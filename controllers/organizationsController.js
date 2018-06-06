@@ -9,15 +9,12 @@ class OrganizationsController {
   }
 
   static show(request, response, next){
-    Organization.findOne({
-      where: request.params,
+    Organization.findById(request.params.id, {
       attributes: { exclude: ['status'] },
-      include: [
-        { association: 'pickups',
-          attributes: ['date', 'accepted_items'],
-          include: { association: 'zipcodes', attributes: ['zipcode'] }
-        }
-      ]
+      include: [{
+        association: 'pickups', attributes: ['date', 'accepted_items'],
+        include: { association: 'zipcodes', attributes: ['zipcode'] }
+      }]
     })
     .then(organization => {
       if(organization) { response.json(organization) }

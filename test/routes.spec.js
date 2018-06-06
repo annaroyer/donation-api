@@ -159,4 +159,21 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('POST /api/v1/organizations/:organization_id/pickups', () => {
+    it('authenticates the request then creates a new pickup for that organization', () => {
+      return chai.request(server)
+      .post('/api/v1/organizations/:organization_id/pickups')
+      .send({
+        date: new Date('July 4, 2018'),
+        accepted_items: ['household items', 'clothing and accessories'],
+        zipcodes: ["80243", "80245", "80246"]
+      })
+      .then(response => response.should.have.status(200))
+      .then(() => {
+        return db.pickup.count()
+        .then(count => count.should.eq(4))
+      })
+    })
+  })
 })

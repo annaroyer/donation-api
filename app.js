@@ -7,6 +7,7 @@ const cors = require('cors')
 
 const organizationsRouter = require('./routes/organizations');
 const pickupsRouter = require('./routes/pickups');
+const organizationPickupsRouter = require('./routes/organizations/pickups')
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cors())
 
 app.use('/api/v1/organizations', organizationsRouter);
 app.use('/api/v1/pickups', pickupsRouter);
+app.use('/api/v1/organizations/:organization_id/pickups', organizationPickupsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
