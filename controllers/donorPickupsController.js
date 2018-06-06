@@ -3,11 +3,13 @@ const DonorPickup = db.donor_pickup
 const pry = require('pryjs')
 class DonorPickupsController {
   static create(request, response, next){
-    eval(pry.it)
     request.body.pickup_id = request.params.pickup_id
-    DonorPickup.create(request.body,{ validate: true })
+    DonorPickup.create(request.body, { validate: true })
     .then(donor => response.redirect(`${request.originalUrl}/${donor.id}`))
-   .catch(errors => response.status(400).json(errors))
+   .catch(errors => {
+     eval(pry.it)
+     response.status(400).json(errors)
+   })
   }
 
   static show(request, response, next){
