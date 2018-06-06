@@ -1,8 +1,9 @@
 const db = require('../models')
 const DonorPickup = db.donor_pickup
-
+const pry = require('pryjs')
 class DonorPickupsController {
   static create(request, response, next){
+    eval(pry.it)
     request.body.pickup_id = request.params.pickup_id
     DonorPickup.create(request.body,{ validate: true })
     .then(donor => response.redirect(`${request.originalUrl}/${donor.id}`))
